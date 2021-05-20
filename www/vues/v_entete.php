@@ -24,7 +24,8 @@
         <meta name="author" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <?php if ($estComptable) { ?>
-            <link href="./styles/bootstrap/bootstrapComptable.css" rel="stylesheet">
+            <link href="./styles/bootstrap/bootstrap.css" rel="stylesheet">
+            <link href="./styles/bootstrap/bootstrapComptableLight.css" rel="stylesheet">
         <?php  } else { ?>
             <link href="./styles/bootstrap/bootstrap.css" rel="stylesheet">
         <?php } ?>
@@ -61,6 +62,12 @@
                                     Valider les fiches de frais
                                 </a>
                             </li> 
+                            <li <?php if ($uc == 'suivreFrais') { ?>class="active"<?php } ?>>
+                                <a href="index.php?uc=suivreFrais&action=selectionnerFiche">
+                                    <span class="glyphicon glyphicon-list-alt"></span>
+                                    Suivre le paiement des fiches de frais
+                                </a>
+                            </li>
                             <?php }
                             else if ($estVisiteur)
                             {

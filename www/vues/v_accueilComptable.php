@@ -38,6 +38,10 @@
                            class="btn btn-success btn-lg" role="button">
                             <span class="glyphicon glyphicon-pencil"></span>
                             <br>Valider les fiches de frais</a>
+                        <a href="index.php?uc=suivreFrais&action=selectionnerFiche"
+                           class="btn btn-success btn-lg" role="button">
+                            <span class="glyphicon glyphicon-pencil"></span>
+                            <br>Suivre le paiement des fiches de frais</a>
                     </div>
                 </div>
             </div>

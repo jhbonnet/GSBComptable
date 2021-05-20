@@ -1,0 +1,71 @@
+/*!
+ * Bootstrap v3.3.7 (http://getbootstrap.com)
+ * Copyright 2011-2016 Twitter, Inc.
+ * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+ * Ici juste la redefinition des couleurs pour la partie comptable comme établi
+ * dans le cahier des charges
+ */ 
+/*! normalize.css v3.0.3 | MIT License | github.com/necolas/normalize.css */
+
+a {
+  color: #FFBD33;
+  text-decoration: none;
+}
+
+
+h2 {color: #FFBD33;}
+
+
+.table-bordered {
+  border: 1px solid #FFBD33;
+}
+
+.table-bordered > thead > tr > th,
+.table-bordered > tbody > tr > th,
+.table-bordered > tfoot > tr > th,
+.table-bordered > thead > tr > td,
+.table-bordered > tbody > tr > td,
+.table-bordered > tfoot > tr > td {
+  border: 1px solid #FFBD33;
+}
+
+.nav-pills > li.active > a,
+.nav-pills > li.active > a:hover,
+.nav-pills > li.active > a:focus {
+  color: #fff;
+  background-color: #FFBD33;
+}
+
+
+.panel-primary > .panel-heading {
+  color: #FFFFFF;
+  background-color: #FFBD33;
+  border-color: #FFBD33;
+}
+
+
+
+.panel-info {
+  border-color: #FFBD33;
+}
+.panel-info > .panel-heading {
+  color: #FFFFFF;
+  background-color: #FFBD33;
+  border-color: #FFBD33;
+}
+.panel-info > .panel-heading + .panel-collapse > .panel-body {
+  border-top-color: #FFBD33;
+}
+
+
+.panel-info {
+  border-color: #FFBD33;
+}
+.panel-info > .panel-heading {
+  color: #FFFFFF;
+  background-color: #FFBD33;
+  border-color: #FFBD33;
+}
+.panel-info > .panel-heading + .panel-collapse > .panel-body {
+  border-top-color: #FFBD33;
+}

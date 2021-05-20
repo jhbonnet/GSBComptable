@@ -86,6 +86,7 @@ default:
             $pdo->majNbJustificatifs($leVisiteur, $leMois, $nbJustificatifs);
             $pdo->majDateModifFicheFrais($leVisiteur, $leMois);
             $pdo->majMontantValideFicheFrais($leVisiteur, $leMois);
+            $pdo->majEtatFicheFrais($leVisiteur, $leMois, 'VA');
             break;            
         case 'supprimerFraisHorsForfait':
             $idFrais = filter_input(INPUT_GET, 'idFrais', FILTER_SANITIZE_STRING);

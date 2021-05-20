@@ -81,6 +81,27 @@ class PdoGsb
         }
         return PdoGsb::$monPdoGsb;
     }
+    /**
+     * Fonction qui hash tous les passwords la liste des visiteurs
+     *
+     * @param PDO $pdo instance de la classe PDO utilisée pour se connecter
+     *
+     *
+     */
+        public function hashLesPasswords()
+        {
+            $req = PdoGsb::$monPdo->prepare('SELECT * FROM visiteur');
+            $req->execute();
+            $lesLignes = $req->fetchAll();
+            foreach ($lesLignes as $unVisiteur) {
+                $mdp = $unVisiteur['mdp'];
+                $hash = password_hash($mdp, PASSWORD_DEFAULT);
+                $id = $unVisiteur['id'];
+                $req = PdoGsb::$monPdo->prepare("update visiteur set mdphashed = :unhash where visiteur.id = :unId ");
+                $req->bindParam(':unhash', $hash, PDO::PARAM_STR);
+                $req->bindParam(':unId', $id, PDO::PARAM_STR);
+                $req->execute();}
+        }
 
     /**
      * Retourne les informations d'un visiteur
@@ -94,16 +115,19 @@ class PdoGsb
     {
         $requetePrepare = PdoGsb::$monPdo->prepare(
             'SELECT visiteur.id AS id, visiteur.nom AS nom, '
-            . 'visiteur.prenom AS prenom '
+            . 'visiteur.prenom AS prenom, visiteur.mdphashed AS mdphashed '
             . 'FROM visiteur '
-            . 'WHERE visiteur.login = :unLogin AND visiteur.mdp = :unMdp'
+            . 'WHERE visiteur.login = :unLogin'
         );
         $requetePrepare->bindParam(':unLogin', $login, PDO::PARAM_STR);
-        $requetePrepare->bindParam(':unMdp', $mdp, PDO::PARAM_STR);
         $requetePrepare->execute();
-        return $requetePrepare->fetch();
+        $result = $requetePrepare->fetch();
+        if ((is_array($result) and (password_verify($mdp,$result[mdphashed])))) {
+           return $result;
+        } else {
+        return null;
+        }
     }
-
     /**
      * Retourne sous forme d'un tableau associatif toutes les lignes de frais
      * hors forfait concernées par les deux arguments.
@@ -199,6 +223,11 @@ class PdoGsb
         $requetePrepare->execute();
         return $requetePrepare->fetchAll();
     }
+    /**
+     * Retourne tous id nom prenom de la table visiteur
+     *
+     * @return un tableau associatif
+     */
     public function getLesVisiteurs()
     {
         $requetePrepare = PdoGsb::$monPdo->prepare(
@@ -210,7 +239,23 @@ class PdoGsb
         $requetePrepare->execute();
         return $requetePrepare->fetchAll();
     }
-
+/**
+     * Retourne tous id nom prenom des fiches de frais qui sont VA validés
+     *
+     * @return un tableau associatif
+     */
+    public function getLesIdFraisValides()
+    {
+        $requetePrepare = PdoGsb::$monPdo->prepare(
+            'SELECT visiteur.id as idvisiteur, '
+            . 'visiteur.nom as nom, '
+            . 'visiteur.prenom as prenom, '
+            . 'fichefrais.mois as mois '
+            . 'FROM fichefrais JOIN visiteur ON visiteur.id = fichefrais.idvisiteur where fichefrais.idetat = "VA" ORDER BY visiteur.nom '
+        );
+        $requetePrepare->execute();
+        return $requetePrepare->fetchAll();
+    }
     /**
      * Met à jour la table ligneFraisForfait
      * Met à jour la table ligneFraisForfait pour un visiteur et

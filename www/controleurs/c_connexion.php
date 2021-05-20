@@ -30,9 +30,8 @@ case 'valideConnexion':
      * on a un seul comptable mais il est possible de faire 
      * comme pour idvisiteur avec une table
  */
-    if (($login === 'comptable') and ($mdp === '0')) 
-    {
-        connecterComptable('Leboncompte','Precis');
+    if (($login === 'comptable') and ($mdp === '0')) {
+        connecterComptable('Leboncompte', 'Precis');
         header('Location: index.php');
     }
     else
