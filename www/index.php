@@ -19,10 +19,18 @@ require_once 'includes/fct.inc.php';
 require_once 'includes/class.pdogsb.inc.php';
 session_start();
 $pdo = PdoGsb::getPdoGsb();
-$pdo->hashLesPasswords();
+/* a ete Utilise une fois pour hasher les passwords
+ * $pdo->hashLesPasswords();
+ */
 $estConnecte = estConnecte();
 $estComptable = estComptable();
 $estVisiteur= estVisiteur();
+
+/* pour recreer des fiches de frais automatiquement
+ * require_once 'tests/gendatas/fonctions.php';
+ * require_once 'tests/gendatas/majGSB.php';
+ */
+
 require 'vues/v_entete.php';
 $uc = filter_input(INPUT_GET, 'uc', FILTER_SANITIZE_STRING);
 

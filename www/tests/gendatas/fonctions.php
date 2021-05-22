@@ -328,16 +328,6 @@ function creationFraisHorsForfait($pdo)
  *
  * @return String avec le mois au format aaaamm
  */
-function getMois($date)
-{
-    @list($jour, $mois, $annee) = explode('/', $date);
-    unset($jour);
-    if (strlen($mois) == 1) {
-        $mois = '0' . $mois;
-    }
-    return $annee . $mois;
-}
-
 /**
  * Fonction qui met à jour les montants des fiches de frais (via des UPDATE SQL)
  *

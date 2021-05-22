@@ -27,18 +27,18 @@
                 <select id="lstMois" name="lstMois" class="form-control">
                     <?php
                     foreach ($lesMois as $unMois) {
-                        $mois = $unMois['mois'];
-                        $numAnnee = $unMois['numAnnee'];
-                        $numMois = $unMois['numMois'];
-                        if ($mois == $moisASelectionner) {
+                        $mois_ = $unMois['mois'];
+                        $numAnnee_ = $unMois['numAnnee'];
+                        $numMois_ = $unMois['numMois'];
+                        if ($mois_ == $moisASelectionner) {
                             ?>
-                            <option selected value="<?php echo $mois ?>">
-                                <?php echo $numMois . '/' . $numAnnee ?> </option>
+                            <option selected value="<?php echo $mois_ ?>">
+                                <?php echo $numMois_ . '/' . $numAnnee_ ?> </option>
                             <?php
                         } else {
                             ?>
-                            <option value="<?php echo $mois ?>">
-                                <?php echo $numMois . '/' . $numAnnee ?> </option>
+                            <option value="<?php echo $mois_ ?>">
+                                <?php echo $numMois_ . '/' . $numAnnee_ ?> </option>
                             <?php
                         }
                     }
